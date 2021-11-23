@@ -1,0 +1,75 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.layout-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container-photo img {
+    max-height: 150px;
+}
+
+.image-container-title {
+    font-size: small;
+}
+
+.image-container-text {
+    font-size: small;
+}
+
+.layout-header, .layout-footer, .image-container-text {
+    display: none;
+}
+
+/* Tablet */
+@media only screen and (min-width: 600px) {
+    .image-container-photo img {
+        max-height: 225px;
+    }
+    
+    .image-container-title {
+        font-size: medium;
+    }
+    
+    .image-container-text {
+        font-size: medium;
+    }
+
+    .layout-header, .layout-footer, .image-container-text {
+        display: block;
+    }
+}
+
+/* Desktop */
+/* oben definierte Regeln gelten auch für diesen Breakpoint => es müssen nur Änderungen definiert werden */
+@media only screen and (min-width: 992px) {
+    .image-container-photo img {
+        max-height: 300px;
+    }
+    
+    .image-container-title {
+        font-size: large;
+    }
+}
+
+/* Texte bei Druck entfernen */
+@media only print {
+    .layout-header, .layout-footer, .image-container-title, .image-container-text {
+        display: none;
+    }
+
+    .image-container-photo img {
+        max-height: 600px;
+    }
+}
