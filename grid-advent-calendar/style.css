@@ -15,12 +15,12 @@
     "door11 door21 door13 door14 door14 door20 door20 door20 door20";
   border: 1px solid #000;
   font-family: 'Mountains of Christmas', cursive;
-  font-size: 40px;
+  font-size: 20px;
 
   /* keep 1:1 ratio of advent-calendar */
   aspect-ratio: 1;
-  min-width: 600px;
-  min-height: 600px;
+  min-width: 300px;
+  min-height: 300px;
   max-width: 95vh;
   max-height: 95vw;
 }
@@ -128,4 +128,46 @@ div[class^="door-"] {
 
 .door-24 {
   grid-area: door24;
+}
+
+.door-1, .door-2, .door-3, .door-4, .door-5 {
+    background-color: #165B33;
+}
+
+.door-6, .door-7, .door-8, .door-9, .door-10 {
+    background-color: #146B3A;
+}
+
+.door-11, .door-12, .door-13, .door-14, .door-15 {
+    background-color: #F8B229;
+}
+
+.door-16, .door-17, .door-18, .door-19, .door-20 {
+    background-color: #EA4630;
+}
+
+.door-21, .door-23, .door-24 {
+    background-color: #BB2528;
+}
+
+.door-22 {
+    background-image: url("bg.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+@media only screen and (min-width: 600px) {
+    .advent-calendar {
+        font-size: 30px;
+        min-width: 450px;
+        min-height: 450px;
+      }
+}
+
+@media only screen and (min-width: 900px) {
+    .advent-calendar {
+        font-size: 40px;
+        min-width: 600px;
+        min-height: 600px;
+      }
 }
