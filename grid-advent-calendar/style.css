@@ -1,0 +1,131 @@
+.advent-calendar {
+  display: grid;
+  grid-template-columns: repeat(door9, 1fr);
+  grid-template-rows: repeat(door10, 1fr);
+  grid-template-areas:
+    "door19 door19 door19 door23 door23 door4 door2 door2 door2"
+    "door19 door19 door19 door23 door23 door4 door12 door12 door12"
+    "door9  door9  door9  door16 door16 door16 door16 door18 door18"
+    "door8  door8  door8  door16 door16 door16 door16 door18 door18"
+    "door7  door7  door7  door22 door22 door10 door10 door10 door10"
+    "door7  door7  door7  door22 door22 door17 door17 door17 door17"
+    "door6  door6  door6  door6 door6 door15 door15 door3 door1"
+    "door24 door24 door24 door24 door24 door15 door15 door3 door1"
+    "door11 door21 door13 door14 door14 door5 door5 door5 door5"
+    "door11 door21 door13 door14 door14 door20 door20 door20 door20";
+  border: 1px solid #000;
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 40px;
+
+  /* keep 1:1 ratio of advent-calendar */
+  aspect-ratio: 1;
+  min-width: 600px;
+  min-height: 600px;
+  max-width: 95vh;
+  max-height: 95vw;
+}
+
+div[class^="door-"] {
+    border: 1px solid #000;
+
+    /* center content in boxes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.door-1 {
+  grid-area: door1;
+}
+
+.door-2 {
+  grid-area: door2;
+}
+
+.door-3 {
+  grid-area: door3;
+}
+
+.door-4 {
+  grid-area: door4;
+}
+
+.door-5 {
+  grid-area: door5;
+}
+
+.door-6 {
+  grid-area: door6;
+}
+
+.door-7 {
+  grid-area: door7;
+}
+
+.door-8 {
+  grid-area: door8;
+}
+
+.door-9 {
+  grid-area: door9;
+}
+
+.door-10 {
+  grid-area: door10;
+}
+
+.door-11 {
+  grid-area: door11;
+}
+
+.door-12 {
+  grid-area: door12;
+}
+
+.door-13 {
+  grid-area: door13;
+}
+
+.door-14 {
+  grid-area: door14;
+}
+
+.door-15 {
+  grid-area: door15;
+}
+
+.door-16 {
+  grid-area: door16;
+}
+
+.door-17 {
+  grid-area: door17;
+}
+
+.door-18 {
+  grid-area: door18;
+}
+
+.door-19 {
+  grid-area: door19;
+}
+
+.door-20 {
+  grid-area: door20;
+}
+
+.door-21 {
+  grid-area: door21;
+}
+
+.door-22 {
+  grid-area: door22;
+}
+
+.door-23 {
+  grid-area: door23;
+}
+
+.door-24 {
+  grid-area: door24;
+}
