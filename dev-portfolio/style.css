@@ -1,0 +1,78 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: right;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 12px;
+  margin: 8px 24px;
+  color: black;
+}
+
+h1 {
+  margin-left: 16px;
+}
+
+section {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.business-card {
+  font-family: "Roboto Mono", monospace;
+  font-size: 20px;
+}
+
+.business-card-border {
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 16px;
+}
+
+.skills {
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.skill {
+  width: 90%;
+  height: 40px;
+  border: solid 1px gray;
+}
+
+.skills-html-progress {
+  height: 100%;
+  width: 80%;
+  background-color: dodgerblue;
+}
+
+.skills-css-progress {
+  height: 100%;
+  width: 70%;
+  background-color: dodgerblue;
+}
+
+.skills-js-progress {
+  height: 100%;
+  width: 55%;
+  background-color: dodgerblue;
+}
+
+.contact {
+  justify-content: space-around;
+}
