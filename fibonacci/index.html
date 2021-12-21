@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Fibonacci</title>
+    
+    <script>
+      function fibonacci() {
+        let lastValue = 0;
+        let currentValue = 1;
+        let nextValue = 1;
+
+        document.writeln(lastValue);
+        document.writeln(currentValue);
+
+        while (nextValue <= 100) {
+          document.writeln(nextValue);
+          lastValue = currentValue;
+          currentValue = nextValue;
+          nextValue = lastValue + currentValue;
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="fibonacci();"></body>
+</html>
