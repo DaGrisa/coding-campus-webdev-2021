@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.roll-button{
+    width: 100px;
+    height: 30px;
+    background-color: yellow;
+    border: black solid 1px;
+}
+
+.roll-button:active {
+    color: black;
+}
+
+#dice {
+    font-size: 96px;
+    min-height: 120px;
+    color:blue;
+    text-shadow: dodgerblue 2px 3px;
+}
+
+#history {
+    font-size: 16px;
+    min-height: 20px;
+}
