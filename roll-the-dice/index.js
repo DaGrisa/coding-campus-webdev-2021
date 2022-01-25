@@ -33,7 +33,7 @@ function refreshAndShowHistory(number) {
 }
 
 async function showRollingAnimation() {
-  for (let i = 1; i < 9; i++) {
+  for (let i = 1; i <= 9; i++) {
     showDiceNumber(getRandomDiceNumber());
     await sleep(i * 50);
   }
