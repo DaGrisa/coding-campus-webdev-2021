@@ -31,10 +31,43 @@ const supportedCharacters = [
   "?",
 ];
 
-function caesar() {
+function caesar(encrypt) {
   const inputText = normalizeText(document.getElementById("text-input").value);
-  const textOutput = inputText;
+  const key = parseInt(document.getElementById("key").value);
+
+  let textOutput = "";
+  for (const character of inputText) {
+    if (encrypt) {
+      textOutput += encryptCharacter(character, key);
+    } else {
+      textOutput += decryptCharacter(character, key);
+    }
+  }
+
   document.getElementById("text-output").value = textOutput;
+}
+
+function encryptCharacter(character, key) {
+  if (character === "�") {
+    return "�";
+  }
+
+  const index = supportedCharacters.indexOf(character);
+  const encryptIndex = (index + key) % supportedCharacters.length;
+  return supportedCharacters[encryptIndex];
+}
+
+function decryptCharacter(character, key) {
+  if (character === "�") {
+    return "�";
+  }
+
+  const index = supportedCharacters.indexOf(character);
+  let decryptIndex = (index - key) % supportedCharacters.length;
+  if (decryptIndex < 0) {
+    decryptIndex = supportedCharacters.length + decryptIndex;
+  }
+  return supportedCharacters[decryptIndex];
 }
 
 function normalizeText(text) {
