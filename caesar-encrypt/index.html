@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Caesar Encrypt / Decrypt</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Caesar Encrypt / Decrypt</h1>
+    <textarea cols="120" rows="25" id="text-input"></textarea>
+    <br />
+    <label for="key">Key</label>
+    <select name="key" id="key">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    <input
+      class="encrypt-button"
+      type="button"
+      value="Encrypt"
+      onclick="caesar()"
+    />
+    <input
+      class="decrypt-button"
+      type="button"
+      value="Decrypt"
+      onclick="caesar()"
+    />
+    <br />
+    <textarea cols="120" rows="25" id="text-output" readonly></textarea>
+  </body>
+</html>
