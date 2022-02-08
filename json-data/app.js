@@ -38,5 +38,11 @@ function renderDetail(employee) {
   document.getElementById(
     "name"
   ).innerHTML = `${employee.firstName} ${employee.lastName}`;
-  document.getElementById("birthday").innerHTML = employee.dateOfBirth;
+  const dateOfBirth = new Date(employee.dateOfBirth);
+  document.getElementById("birthday").innerHTML =
+    dateOfBirth.toLocaleDateString("de-AT", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
 }

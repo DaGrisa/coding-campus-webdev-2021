@@ -5,3 +5,15 @@
     border: 1px solid grey;
     padding: 10px 20px;
 }
+
+#avatar {
+    max-width: 150px;
+}
+
+.content {
+    display: flex;
+}
+
+#detail {
+margin: 10px;
+}
