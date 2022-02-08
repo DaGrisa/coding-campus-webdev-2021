@@ -17,6 +17,7 @@ function renderEmployeeList(employees) {
   for (const employee of employees) {
     const listItem = document.createElement("div");
     listItem.className = "list-item";
+    listItem.addEventListener("click", () => renderDetail(employee));
 
     const keyItem = document.createElement("div");
     keyItem.className = "list-item-key";
@@ -29,4 +30,13 @@ function renderEmployeeList(employees) {
 
     listElement.appendChild(listItem);
   }
+}
+
+function renderDetail(employee) {
+  document.getElementById("avatar").src = employee.image;
+  document.getElementById("key").innerHTML = employee.key;
+  document.getElementById(
+    "name"
+  ).innerHTML = `${employee.firstName} ${employee.lastName}`;
+  document.getElementById("birthday").innerHTML = employee.dateOfBirth;
 }
