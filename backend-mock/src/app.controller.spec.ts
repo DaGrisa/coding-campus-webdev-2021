@@ -22,6 +22,7 @@ describe('AppController', () => {
 
   describe('add employee', () => {
     it('should return 11 employees', () => {
+      // Arrange
       const newEmployee: Employee = {
         key: 'tst',
         firstName: 'Test',
@@ -29,7 +30,11 @@ describe('AppController', () => {
         dateOfBirth: (new Date()).toISOString(),
         image: 'images/test.png'
       };
+
+      // Act
       appController.createEmployee(newEmployee);
+
+      // Assert
       expect(appController.getEmployees()).toHaveLength(11);
       expect(appController.getEmployees()).toContain(newEmployee);
     });
