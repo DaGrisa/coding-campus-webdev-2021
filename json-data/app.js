@@ -1,5 +1,12 @@
 async function startApp() {
   console.log("--- Employee Management ---");
+  await loadEmployeeList();
+}
+
+async function loadEmployeeList() {
+  const listElement = document.getElementById("list");
+  listElement.innerHTML = null;
+
   const employees = await loadEmployeesAsync();
   renderEmployeeList(employees);
 }
@@ -43,6 +50,8 @@ function renderDetail(employee) {
       month: "long",
       year: "numeric",
     });
+  document.getElementById("delete").onclick = () =>
+    deleteEmployee(employee.key);
 }
 
 async function createEmployee() {
@@ -51,17 +60,34 @@ async function createEmployee() {
   const key = document.getElementById("keyInput").value;
   const dateOfBirth = document.getElementById("dateOfBirthInput").value;
 
-  await fetch("http://localhost:3000/employees", {
+  const request = new Request("http://localhost:3000/employees", {
     method: "POST",
     body: JSON.stringify({
       firstName,
       lastName,
       key,
       dateOfBirth,
+      image: "placeholder.gif",
     }),
     headers: {
       "Content-Type": "application/json",
     },
     mode: "cors",
   });
+  await fetch(request);
+
+  await loadEmployeeList();
+}
+
+async function deleteEmployee(employeeKey) {
+  const request = new Request(
+    `http://localhost:3000/employees?key=${employeeKey}`,
+    {
+      method: "DELETE",
+      mode: "cors",
+    }
+  );
+  await fetch(request);
+
+  await loadEmployeeList();
 }

@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { AppService, Employee } from './app.service';
 
 @Controller('employees')
@@ -11,12 +11,12 @@ export class AppController {
   }
 
   @Post()
-  createEmployee(employee: Employee): void {
+  createEmployee(@Body() employee: Employee): void {
     this.appService.addEmployee(employee);
   }
 
   @Delete()
-  deleteEmployee(key: string){
-    this.appService.deleteEmployeeByKey(key);
+  deleteEmployee(@Query() params: any) {
+    this.appService.deleteEmployeeByKey(params.key);
   }
 }
