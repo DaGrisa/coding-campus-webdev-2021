@@ -1,3 +1,30 @@
+class Employee {
+  constructor(firstName, lastName, key, dateOfBirthIsoString, image) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.key = key;
+    this.dateOfBirth = new Date(dateOfBirthIsoString);
+    this.image = image;
+  }
+
+  /**
+   * Calculates the age of the employee.
+   * @returns the age of the employee in years (number)
+   */
+  getAge() {
+    const now = new Date();
+    const age = now.getFullYear() - this.dateOfBirth.getFullYear();
+    return age;
+  }
+
+  /**
+   * @returns full name of the employee (firstName lastName)
+   */
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
 async function startApp() {
   console.log("--- Employee Management ---");
   await loadEmployeeList();
@@ -13,7 +40,17 @@ async function loadEmployeeList() {
 
 async function loadEmployeesAsync() {
   const response = await fetch("http://localhost:3000/employees");
-  const employees = await response.json();
+  const jsonData = await response.json();
+  const employees = jsonData.map(
+    (data) =>
+      new Employee(
+        data.firstName,
+        data.lastName,
+        data.key,
+        data.dateOfBirth,
+        data.image
+      )
+  );
   return employees;
 }
 
@@ -30,7 +67,7 @@ function renderEmployeeList(employees) {
     listItem.appendChild(keyItem);
     const nameItem = document.createElement("div");
     nameItem.className = "list-item-name";
-    nameItem.innerText = `${employee.firstName} ${employee.lastName}`;
+    nameItem.innerText = employee.getFullName();
     listItem.appendChild(nameItem);
 
     listElement.appendChild(listItem);
@@ -40,9 +77,7 @@ function renderEmployeeList(employees) {
 function renderDetail(employee) {
   document.getElementById("avatar").src = employee.image;
   document.getElementById("key").innerHTML = employee.key;
-  document.getElementById(
-    "name"
-  ).innerHTML = `${employee.firstName} ${employee.lastName}`;
+  document.getElementById("name").innerHTML = employee.getFullName();
   const dateOfBirth = new Date(employee.dateOfBirth);
   document.getElementById("birthday").innerHTML =
     dateOfBirth.toLocaleDateString("de-AT", {
@@ -50,6 +85,7 @@ function renderDetail(employee) {
       month: "long",
       year: "numeric",
     });
+  document.getElementById("age").innerHTML = `Age: ${employee.getAge()}`;
   document.getElementById("delete").onclick = () =>
     deleteEmployee(employee.key);
 }

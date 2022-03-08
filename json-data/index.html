@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Management</title>
     <script src="app.js"></script>
+    <script src="confetti.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="startApp()">
@@ -18,6 +19,7 @@
         <img id="avatar" src="placeholder.gif" />
         <div id="key"></div>
         <div id="birthday"></div>
+        <div id="age"></div>
       </div>
     </div>
     <div class="add">
@@ -30,7 +32,11 @@
         <input type="text" name="key" id="keyInput" />
         <label for="dateOfBirth">Date of Birth</label>
         <input type="date" name="dateOfBirth" id="dateOfBirthInput" />
-        <input type="button" value="Save Employee" onclick="createEmployee()" />
+        <input
+          type="button"
+          value="Save Employee"
+          onclick="createEmployee();confetti(50);"
+        />
       </form>
     </div>
   </body>
