@@ -28,6 +28,7 @@ class Employee {
 async function startApp() {
   console.log("--- Employee Management ---");
   await loadEmployeeList();
+  clearDetail();
 }
 
 async function loadEmployeeList() {
@@ -59,7 +60,9 @@ function renderEmployeeList(employees) {
   for (const employee of employees) {
     const listItem = document.createElement("div");
     listItem.className = "list-item";
-    listItem.addEventListener("click", () => renderDetail(employee));
+    listItem.addEventListener("click", (event) =>
+      renderDetail(employee, event)
+    );
 
     const keyItem = document.createElement("div");
     keyItem.className = "list-item-key";
@@ -74,7 +77,9 @@ function renderEmployeeList(employees) {
   }
 }
 
-function renderDetail(employee) {
+function renderDetail(employee, event) {
+  setActiveListItem(event.currentTarget);
+  hideAdd();
   document.getElementById("avatar").src = employee.image;
   document.getElementById("key").innerHTML = employee.key;
   document.getElementById("name").innerHTML = employee.getFullName();
@@ -88,6 +93,38 @@ function renderDetail(employee) {
   document.getElementById("age").innerHTML = `Age: ${employee.getAge()}`;
   document.getElementById("delete").onclick = () =>
     deleteEmployee(employee.key);
+  document.getElementById("add").onclick = () => showAdd();
+
+  document.getElementById("delete").style = "display: visibility";
+  document.getElementById("add").style = "display: visibility";
+}
+
+function setActiveListItem(element) {
+  const activeClassName = "active-list-item";
+  const activeElements = document.getElementsByClassName(activeClassName);
+  for (const activeElement of activeElements) {
+    activeElement.classList.remove(activeClassName);
+  }
+
+  if (element) {
+    element.classList.add(activeClassName);
+  }
+}
+
+function showAdd() {
+  const addContainer = document.getElementById("add-container");
+  const detailsContainer = document.getElementById("details-container");
+
+  addContainer.style = "display: visibility";
+  detailsContainer.style = "display: none";
+}
+
+function hideAdd() {
+  const addContainer = document.getElementById("add-container");
+  const detailsContainer = document.getElementById("details-container");
+
+  addContainer.style = "display: none";
+  detailsContainer.style = "display: visibility";
 }
 
 async function createEmployee() {
@@ -113,6 +150,7 @@ async function createEmployee() {
   await fetch(request);
 
   await loadEmployeeList();
+  hideAdd();
 }
 
 async function deleteEmployee(employeeKey) {
@@ -124,6 +162,18 @@ async function deleteEmployee(employeeKey) {
     }
   );
   await fetch(request);
-
   await loadEmployeeList();
+  clearDetail();
+}
+
+function clearDetail() {
+  setActiveListItem();
+  document.getElementById("avatar").src = null;
+  document.getElementById("key").innerHTML = null;
+  document.getElementById("name").innerHTML = null;
+  document.getElementById("birthday").innerHTML = null;
+  document.getElementById("age").innerHTML = null;
+  document.getElementById("delete").style = "display: none";
+  document.getElementById("add").style = "display: visibility";
+  document.getElementById("add").onclick = () => showAdd();
 }

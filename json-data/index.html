@@ -8,36 +8,46 @@
     <script src="app.js"></script>
     <script src="confetti.js"></script>
     <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body onload="startApp()">
     <h1>Employee Management</h1>
     <div class="content">
       <div id="list"></div>
-      <div id="detail">
+      <div class="content-right">
         <input id="delete" type="button" value="Delete" />
-        <h2 id="name"></h2>
-        <img id="avatar" src="placeholder.gif" />
-        <div id="key"></div>
-        <div id="birthday"></div>
-        <div id="age"></div>
+        <input id="add" type="button" value="Add" />
+        <div id="details-container">
+          <img id="avatar" src="placeholder.gif" />
+          <h2 id="name"></h2>
+          <div id="key"></div>
+          <div id="birthday"></div>
+          <div id="age"></div>
+        </div>
+        <div id="add-container" class="add">
+          <form>
+            <label for="firstName">Firstname</label>
+            <input type="text" name="firstName" id="firstNameInput" />
+            <label for="lastName">Lastname</label>
+            <input type="text" name="lastName" id="lastNameInput" />
+            <label for="key">Key</label>
+            <input type="text" name="key" id="keyInput" />
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" name="dateOfBirth" id="dateOfBirthInput" />
+            <input
+              type="button"
+              value="Save Employee"
+              onclick="createEmployee();confetti(50);"
+            />
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="add">
-      <form>
-        <label for="firstName">Firstname</label>
-        <input type="text" name="firstName" id="firstNameInput" />
-        <label for="lastName">Lastname</label>
-        <input type="text" name="lastName" id="lastNameInput" />
-        <label for="key">Key</label>
-        <input type="text" name="key" id="keyInput" />
-        <label for="dateOfBirth">Date of Birth</label>
-        <input type="date" name="dateOfBirth" id="dateOfBirthInput" />
-        <input
-          type="button"
-          value="Save Employee"
-          onclick="createEmployee();confetti(50);"
-        />
-      </form>
     </div>
   </body>
 </html>

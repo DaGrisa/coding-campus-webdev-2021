@@ -1,19 +1,45 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .list-item {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    border: 1px solid grey;
-    padding: 10px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid grey;
+  padding: 12px 24px;
 }
 
 #avatar {
-    max-width: 150px;
+  max-width: 150px;
 }
 
 .content {
-    display: flex;
+  display: flex;
 }
 
-#detail {
-    margin: 10px;
+#list {
+  min-width: 200px;
+}
+
+.content-right {
+  padding: 32px;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+.active-list-item {
+  background-color: lightgray;
+}
+
+#add-container form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  padding-top: 24px;
+}
+
+#add-container,
+#details-container {
+  padding-top: 12px;
 }
