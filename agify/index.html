@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agify</title>
+
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Guess my age!</h1>
+    <form>
+      <label for="name">Name</label>
+      <input name="name" id="name" />
+      <label for="country">Country</label>
+      <select name="country" id="country">
+        <option value="AT">Austria</option>
+        <option value="HU">Hungary</option>
+        <option value="TR">Turkey</option>
+      </select>
+      <input class="guess" type="button" value="Guess" onclick="guessMyAge()" />
+    </form>
+    <div id="age"></div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#age {
+  font-size: 15rem;
+  color: crimson;
+}
+
+.guess {
+    background-color:dodgerblue;
+    border-style:solid;
+    border-color: black;
+    padding: 5px 20px;
+    font-size: 1.5rem;
+}
