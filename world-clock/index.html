@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Clock</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="worldclock.js"></script>
+</head>
+<body onload="startApp()">
+<h1>Worldclock</h1>
+<br>
+<div id="local">
+    <h2 id="local-time"></h2>
+    <h3 id="local-date"></h3>
+    <h3 id="local-timezone"></h3>
+</div>
+<div id="add-widget">
+    <select id="areas" onchange="setTimeZoneOptions()"></select>
+    <select id="timezones"></select>
+    <button onclick="addWidget()">Add</button>
+</div>
+<div id="widgets"></div>
+</body>
+</html>
