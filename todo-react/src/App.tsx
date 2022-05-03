@@ -4,9 +4,11 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import { TodoFilter } from "./models/TodoFilter";
 
 export default function App(props: { tasks: TodoItem[] }) {
   const [tasks, setTasks] = useState<TodoItem[]>(props.tasks);
+  const [filter, setFilter] = useState<TodoFilter>(TodoFilter.Alle);
 
   function addTask(name: string) {
     const newTask: TodoItem = {
@@ -28,8 +30,8 @@ export default function App(props: { tasks: TodoItem[] }) {
     setTasks(updatedTasks);
   }
 
-  function deleteTask(id: string){
-    const filteredTasks = tasks.filter(task => task.id !== id);
+  function deleteTask(id: string) {
+    const filteredTasks = tasks.filter((task) => task.id !== id);
     setTasks(filteredTasks);
   }
 
@@ -44,17 +46,30 @@ export default function App(props: { tasks: TodoItem[] }) {
     setTasks(updatedTasks);
   }
 
-  const taskList = tasks.map((task) => (
-    <Todo
-      id={task.id}
-      name={task.name}
-      completed={task.completed}
-      toggleTaskCompleted={toggleTaskCompleted}
-      deleteTask={deleteTask}
-      editTask={editTask}
-      key={task.id}
-    />
-  ));
+  const taskList = tasks
+    .filter((task) => {
+      switch (filter) {
+        case TodoFilter.Alle:
+          return true;
+        case TodoFilter.Active:
+          return !task.completed;
+        case TodoFilter.Completed:
+          return task.completed;
+        default:
+          return false;
+      }
+    })
+    .map((task) => (
+      <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
+        editTask={editTask}
+        key={task.id}
+      />
+    ));
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
@@ -64,9 +79,21 @@ export default function App(props: { tasks: TodoItem[] }) {
       <h1>TodoMatic</h1>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
-        <FilterButton name="all" active={true} />
-        <FilterButton name="Active" active={false} />
-        <FilterButton name="Completed" active={false} />
+        <FilterButton
+          filterType={TodoFilter.Alle}
+          setFilter={setFilter}
+          active={filter === TodoFilter.Alle}
+        />
+        <FilterButton
+          filterType={TodoFilter.Active}
+          setFilter={setFilter}
+          active={filter === TodoFilter.Active}
+        />
+        <FilterButton
+          filterType={TodoFilter.Completed}
+          setFilter={setFilter}
+          active={filter === TodoFilter.Completed}
+        />
       </div>
       <h2 id="list-heading">{headingText}</h2>
       <ul
