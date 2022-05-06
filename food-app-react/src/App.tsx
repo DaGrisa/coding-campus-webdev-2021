@@ -1,14 +1,22 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 
-function App() {
+export interface Meal {}
+
+export default function App() {
+  const [cart, setCart] = useState<Meal[]>([]);
+
+  function addCartItems(meals: Meal[]){
+    setCart([...cart, ...meals]);
+  }
+
   return (
-    <div>
-      <Header />
-      <Meals />
-    </div>
+    <Fragment>
+      <Header cart={cart} />
+      <main>
+        <Meals /*addCartItems={addCartItems}*/ />
+      </main>
+    </Fragment>
   );
 }
-
-export default App;

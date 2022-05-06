@@ -1,4 +1,5 @@
 import "./MealItem.css";
+import MealItemForm from "./MealItemForm";
 
 interface MealItemProps {
   name: string;
@@ -6,7 +7,7 @@ interface MealItemProps {
   price: number;
 }
 
-const MealItem = (props: MealItemProps) => {
+export default function MealItem(props: MealItemProps) {
   return (
     <li className="meal-item">
       <div>
@@ -14,9 +15,7 @@ const MealItem = (props: MealItemProps) => {
         <div className="description">{props.description}</div>
         <div className="price">€{props.price}</div>
       </div>
-      <div>FORM</div>
+      <MealItemForm></MealItemForm>
     </li>
   );
 };
-
-export default MealItem;
