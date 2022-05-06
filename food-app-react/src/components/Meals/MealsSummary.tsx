@@ -1,7 +1,7 @@
 import React from "react";
 import "./MealsSummary.css";
 
-const MealsSummary = () => {
+export default function MealsSummary() {
   return (
     <div className="meals-summary">
       <h2>Order some Delicious Food</h2>
@@ -13,6 +13,4 @@ const MealsSummary = () => {
       </p>
     </div>
   );
-};
-
-export default MealsSummary;
+}
