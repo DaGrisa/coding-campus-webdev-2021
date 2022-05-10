@@ -2,8 +2,9 @@ import React from "react";
 import "./AvailableMeals.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
+import { Meal } from "../../App";
 
-const DUMMY_MEALS = [
+const DUMMY_MEALS: Meal[] = [
   {
     id: "m1",
     name: "Sushi",
@@ -30,14 +31,13 @@ const DUMMY_MEALS = [
   },
 ];
 
-export default function AvailableMeals() {
+interface AvailableMealsProps {
+  addCartItems: (meals: Meal[]) => void;
+}
+
+export default function AvailableMeals(props: AvailableMealsProps) {
   const mealList = DUMMY_MEALS.map((meal) => (
-    <MealItem
-      key={meal.id}
-      name={meal.name}
-      description={meal.description}
-      price={meal.price}
-    />
+    <MealItem key={meal.id} meal={meal} addCartItems={props.addCartItems} />
   ));
   return (
     <section className="available-meals">

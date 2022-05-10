@@ -1,21 +1,24 @@
+import { Meal } from "../../../App";
 import "./MealItem.css";
 import MealItemForm from "./MealItemForm";
 
 interface MealItemProps {
-  name: string;
-  description: string;
-  price: number;
+  meal: Meal;
+  addCartItems: (meals: Meal[]) => void;
 }
 
 export default function MealItem(props: MealItemProps) {
   return (
     <li className="meal-item">
       <div>
-        <h3>{props.name}</h3>
-        <div className="description">{props.description}</div>
-        <div className="price">€{props.price}</div>
+        <h3>{props.meal.name}</h3>
+        <div className="description">{props.meal.description}</div>
+        <div className="price">€{props.meal.price}</div>
       </div>
-      <MealItemForm></MealItemForm>
+      <MealItemForm
+        meal={props.meal}
+        addCartItems={props.addCartItems}
+      ></MealItemForm>
     </li>
   );
-};
+}

@@ -13,11 +13,11 @@ export default function Header(props: HeaderProps) {
     <Fragment>
       <header className="header">
         <h1>Food-Order</h1>
-        <HeaderCartButton cart={props.cart}  />
+        <HeaderCartButton cart={props.cart} />
       </header>
       <div className="main-image">
         <img src="header.jpg" />
       </div>
     </Fragment>
   );
-};
+}
