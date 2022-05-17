@@ -1,32 +1,32 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {useContext} from "react";
 import "./HeaderCartButton.css";
 import CartIcon from "./CartIcon";
-import { Meal } from "../../App";
+import CartContext from "../../store/CartContext";
 
 interface HeaderCartButtonProps {
-  cart: Meal[];
+    onShowCart: () => void;
 }
 
 export default function HeaderCartButton(props: HeaderCartButtonProps) {
-  const [totalPrice, setTotalPrice] = useState("");
-  useEffect(() => {
-    let total = 0;
-    for (const cartItem of props.cart) {
-      total += cartItem.price;
-    }
-    if (total > 0) {
-      setTotalPrice(total + "€");
-    }
-  }, [props.cart]);
 
-  return (
-    <button className="button" title={totalPrice}>
+    //context abrufen
+    const cartCtx = useContext(CartContext);
+    //total amount holen und unten statt X ausgeben
+    const numberOfCartItems = cartCtx.items.reduce(
+        (curNumber, item) => {
+            return curNumber + item.quantity;
+        }, 0
+    );
+
+
+    return (
+        <button className="button" onClick={props.onShowCart}>
       <span className="icon">
         {" "}
-        <CartIcon />{" "}
+          <CartIcon/>{" "}
       </span>
-      <span>Your Cart</span>
-      <span className="badge">{props.cart.length}</span>
-    </button>
+            <span>Your Cart</span>
+            <span className="badge">{numberOfCartItems}</span>
+        </button>
   );
 }

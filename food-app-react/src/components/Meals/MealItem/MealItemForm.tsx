@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Meal } from "../../../App";
+import {ChangeEvent, FormEvent, useState} from "react";
+import {Meal} from "../../../App";
 import "./MealItemForm.css";
 
 interface MealItemFromProps {
-  addCartItems: (meals: Meal[]) => void;
   meal: Meal;
+  onAddToCart: (itemCount: number) => void;
 }
 
 export default function MealItemForm(props: MealItemFromProps) {
@@ -12,14 +12,18 @@ export default function MealItemForm(props: MealItemFromProps) {
 
   function handleOnChangeCount(event: ChangeEvent<HTMLInputElement>) {
     const count = parseInt(event.currentTarget.value);
+
     setItemCount(count);
   }
 
   function handleOnSubmitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); // prevent reload
-    const cartItems = Array<Meal>(itemCount).fill(props.meal); // create array of x same meal items
-    props.addCartItems(cartItems); // call function to add meal items
-    setItemCount(1); // reset input field to default value
+
+    if (itemCount < 1 || itemCount > 5) {
+      return;
+    }
+
+    props.onAddToCart(itemCount);
   }
 
   return (
