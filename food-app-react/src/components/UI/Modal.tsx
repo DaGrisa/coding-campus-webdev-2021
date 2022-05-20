@@ -1,10 +1,10 @@
 
 import ReactDOM from 'react-dom';
-import { Fragment, ReactElement } from "react";
+import { Fragment, ReactElement, ReactNode } from "react";
 import "./Modal.css";
 
 interface ModalProps {
-    children: ReactElement[];
+    children: ReactNode;
     onHideCart: ()=>void;
 }
 
@@ -13,7 +13,7 @@ interface BackdropProps {
 }
 
 interface ModalOverlayProps {
-    children: ReactElement[];
+    children: ReactNode;
 }
 
 function Backdrop(props: BackdropProps){

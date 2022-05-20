@@ -12,13 +12,15 @@ export interface CartContextState {
     totalPrice: number;
     addItem: (item: CartItem)=>void,
     removeItem: (id: string)=>void;
+    clearCart: ()=>void;
 }
 
 const defaultCartState:CartContextState = {
     items: [],
     totalPrice: 0,
     addItem: ()=>{},
-    removeItem: () => {}
+    removeItem: () => {},
+    clearCart: () => {}
 };
 
 const CartContext = React.createContext(defaultCartState);

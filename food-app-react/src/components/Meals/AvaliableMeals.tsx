@@ -1,41 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./AvailableMeals.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import {Meal} from "../../App";
 
-const DUMMY_MEALS: Meal[] = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 16.5,
-  },
-  {
-    id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 12.99,
-  },
-  {
-    id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
-  },
-];
-
 interface AvailableMealsProps {
 }
 
 export default function AvailableMeals(props: AvailableMealsProps) {
-  const mealList = DUMMY_MEALS.map((meal) => (
+  const [meals, setMeals] = useState<Meal[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState('');
+
+  useEffect(() => {
+    setIsLoading(true);
+    //request zur rest api von firebase (backend)
+    const fetchMeals =async () => {
+      const response = await fetch('https://foa1-129ed-default-rtdb.europe-west1.firebasedatabase.app/meals.json').then();
+      
+      if(!response.ok){
+        throw new Error('Something went wrong!');
+      }
+
+      const responseData = await response.json();
+
+      //daten aus json laden
+      let loadedMeals: Meal[] = [];
+
+      for(const key in responseData){
+        loadedMeals.push({
+          id: key,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          price: responseData[key].price,
+        });
+      }
+
+      setMeals(loadedMeals);
+      setIsLoading(false);
+    };
+
+    
+    fetchMeals().catch((error) => {
+      let message = 'Unknown error';
+      if(error instanceof Error){
+        message = error.message;
+      }
+
+      setIsLoading(false);
+      setHttpError(message);
+    });
+
+  }, []);
+
+  if(isLoading){
+    return (
+      <section className="meals-loading">
+        <p></p>
+      </section>
+    );
+  }
+
+  if(httpError){
+    return (
+      <section className="meals-error">
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
+  const mealList = meals.map((meal) => (
       <MealItem key={meal.id} meal={meal}/>
   ));
   return (
