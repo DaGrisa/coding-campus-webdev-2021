@@ -2,24 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./AvailableMeals.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-import {Meal} from "../../App";
+import { Meal } from "../../App";
 
-interface AvailableMealsProps {
-}
+interface AvailableMealsProps {}
 
 export default function AvailableMeals(props: AvailableMealsProps) {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState('');
+  const [httpError, setHttpError] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
     //request zur rest api von firebase (backend)
-    const fetchMeals =async () => {
-      const response = await fetch('https://foa1-129ed-default-rtdb.europe-west1.firebasedatabase.app/meals.json').then();
-      
-      if(!response.ok){
-        throw new Error('Something went wrong!');
+    const fetchMeals = async () => {
+      const response = await fetch("http://localhost:8000/meals").then();
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
       }
 
       const responseData = await response.json();
@@ -27,7 +26,7 @@ export default function AvailableMeals(props: AvailableMealsProps) {
       //daten aus json laden
       let loadedMeals: Meal[] = [];
 
-      for(const key in responseData){
+      for (const key in responseData) {
         loadedMeals.push({
           id: key,
           name: responseData[key].name,
@@ -40,20 +39,18 @@ export default function AvailableMeals(props: AvailableMealsProps) {
       setIsLoading(false);
     };
 
-    
     fetchMeals().catch((error) => {
-      let message = 'Unknown error';
-      if(error instanceof Error){
+      let message = "Unknown error";
+      if (error instanceof Error) {
         message = error.message;
       }
 
       setIsLoading(false);
       setHttpError(message);
     });
-
   }, []);
 
-  if(isLoading){
+  if (isLoading) {
     return (
       <section className="meals-loading">
         <p></p>
@@ -61,7 +58,7 @@ export default function AvailableMeals(props: AvailableMealsProps) {
     );
   }
 
-  if(httpError){
+  if (httpError) {
     return (
       <section className="meals-error">
         <p>{httpError}</p>
@@ -69,9 +66,7 @@ export default function AvailableMeals(props: AvailableMealsProps) {
     );
   }
 
-  const mealList = meals.map((meal) => (
-      <MealItem key={meal.id} meal={meal}/>
-  ));
+  const mealList = meals.map((meal) => <MealItem key={meal.id} meal={meal} />);
   return (
     <section className="available-meals">
       <Card>

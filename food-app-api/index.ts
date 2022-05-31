@@ -40,6 +40,14 @@ const meals: Meal[] = [
 const app: Express = express();
 const port = process.env.PORT;
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
+  next();
+});
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get('/', (req: Request, res: Response) => {
   res.send('React Food App API');
 });
@@ -48,6 +56,10 @@ app.get('/meals', (req: Request, res: Response) => {
   res.send(meals);
 });
 
+app.post('/order', (req: Request, res: Response) => {
+  console.log(req.body);
+});
+
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
